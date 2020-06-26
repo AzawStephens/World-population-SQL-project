@@ -1,0 +1,32 @@
+SELECT COUNT(*) AS 'Africa entries'
+FROM countries  
+WHERE continent = 'Africa';
+SELECT SUM(population) AS 'Oceania population in 2005'
+FROM population_years
+JOIN countries   
+ON countries.id = population_years.country_id
+WHERE countries.continent = 'Oceania' AND population_years.year='2005';
+SELECT AVG(population) AS 'Average population in South America 2003'
+FROM population_years
+JOIN countries
+ON countries.id = population_years.country_id
+WHERE population_years.year = '2003' AND countries.continent = 'South America';
+SELECT MIN(population) AS 'smallest population in 2007',countries.name
+FROM population_years
+JOIN countries     
+ON countries.id = population_years.country_id
+WHERE population_years.year ='2007';
+SELECT AVG(population)AS 'Average Poland populaion'
+FROM population_years
+JOIN countries
+ON countries.id = population_years.country_id
+WHERE countries.name = 'Poland';
+SELECT COUNT(name) AS 'Countries with The in there names', name
+FROM countries  
+WHERE name LIKE '%The%';
+SELECT SUM(population) AS 'Population in 2010', countries.continent
+FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id
+WHERE population_years.year = '2010'
+GROUP BY countries.continent;
